@@ -1,0 +1,124 @@
+/* slider images css */
+.container-fluid{
+    padding: 0;
+    overflow: hidden !important;
+}
+.slider-img{
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    overflow: hidden !important;
+}
+
+
+/* school title css */
+.school-title{
+    font-family: monospace;
+    font-weight: 900;
+}
+.school-title>h3>b>span{
+    color: indigo;
+}
+.school-title>p{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+
+/* button css */
+.btn-info{
+    color: white;
+    background-color: indigo;
+    border-radius: 4px;
+    /* transition: tra; */
+}
+.btn-info:hover{
+    transform: scale(1.1);
+}
+
+
+/* section titles css*/
+.section-title{
+    font-weight: 700;
+    font-family: monospace;
+}
+
+
+ /* Custom CSS for the text typing animation */
+ @keyframes typing {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  .typed-text {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 2px solid black; /* Creates the cursor effect */
+    white-space: nowrap;
+    width: 0;
+    animation: typing 14s steps(40) 1s forwards, blink 0.75s step-end infinite;
+  }
+
+  /* Blinking cursor */
+  @keyframes blink {
+    0%,
+    100% {
+      border-color: transparent;
+    }
+    50% {
+      border-color: transparent;
+    }
+  }
+
+
+/* all image hover css */
+
+img{
+    opacity: .8;
+    transition: all 0.3s ease;
+}
+img:hover{
+ opacity: 1;
+}
+
+/* map css  */
+.map-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 450px;     
+    margin: 0 auto;    
+}
+.map {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* footer css  */
+.footer{
+    background-color: darkslategray;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    /* position: absolute; */
+    /* bottom: 0; */
+    /* top: 0; */
+}
+
+/* login container css  */
+/* .login-container{
+    width: auto;
+    height: auto;
+    overflow: hidden;
+} */
+@media (max-width: 480px) {
+   .login-container{
+    width: auto;
+
+   }
+}
+
