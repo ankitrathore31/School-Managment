@@ -7,8 +7,12 @@ if (isset($_POST['submit'])) {
     $book_writter = $_POST['book_writter'];
     $book_quantity = $_POST['book_quantity'];
 
-    $query = "insert into books(book_code,book_name,book_writter,book_quantity)VALUES('$book_code','$book_name',
-    '$book_writter','$book_quantity')";
+    $issue_quantity = $book_quantity;
+    $book_status = ($issue_quantity == 0) ? 'Unavailable' : 'Available';
+
+    $query = "INSERT INTO books (book_code, book_name, book_writter, book_quantity, issue_quantity, book_status)
+              VALUES ('$book_code', '$book_name', '$book_writter', '$book_quantity', '$issue_quantity', '$book_status')";
+              
     $result = mysqli_query($db, $query);
 
     if ($result) {
@@ -17,6 +21,7 @@ if (isset($_POST['submit'])) {
         echo "<script>alert('Error');</script>";
     }
 }
+
 
 ?>
 

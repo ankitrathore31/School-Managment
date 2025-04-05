@@ -252,9 +252,10 @@ $school = mysqli_fetch_assoc($result);
                     <i class="fas fa-book me-2"></i> Library
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="books_overview.php"><i class="fas fa-tachometer-alt me-2"></i>Books Overview</a></li>
                     <li><a class="dropdown-item" href="add_books.php"><i class="fas fa-plus-square me-2"></i> Add Books</a></li>
                     <li><a class="dropdown-item" href="books_list.php"><i class="fas fa-list me-2"></i> Books List</a></li>
-                    <li><a class="dropdown-item" href="books_issued.php"><i class="fas fa-list me-2"></i> Issued & Return Book</a></li>
+                    <!-- <li><a class="dropdown-item" href="books_issued.php"><i class="fas fa-list me-2"></i> Issued & Return Book</a></li> -->
                     <li><a class="dropdown-item" href="issued_book_list.php"><i class="fas fa-list me-2"></i> Issued Book List</a></li>
                 </ul>
             </li>

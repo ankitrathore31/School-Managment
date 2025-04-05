@@ -76,6 +76,7 @@ $result = mysqli_query($db, $search_query);
                             <th>Book Writer</th>
                             <th>Book Quantity</th>
                             <th>Book Available</th>
+                            <th>Issue Book</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -92,14 +93,17 @@ $result = mysqli_query($db, $search_query);
                                 <td class="fw-bold"><?= $data['book_name']; ?></td>
                                 <td><?= $data['book_writter']; ?></td>
                                 <td class="fw-semibold"><?= $data['book_quantity']; ?></td>
-                                <td class="<?= ($available_books > 0) ? 'text-success fw-bold' : 'text-danger fw-bold'; ?>">
-                                    <?= $available_books; ?>
+                                <td class="<?= ($book_status = 'Available') ? 'text-success fw-bold' : 'text-danger fw-bold'; ?>">
+                                    <?= $book_status; ?>
+                                </td>
+                                <td>
+                                    <a href="books_issued.php?id=<?= $data['id']; ?>" class="btn btn-sm btn-success me-1">
+                                        <i class="fa fa-book me-2"></i>Issue
+                                    </a>
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a href="view_book.php?id=<?= $data['id']; ?>" class="btn btn-sm btn-success me-1">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
+
                                         <a href="edit_book.php?id=<?= $data['id']; ?>" class="btn btn-sm btn-primary me-1">
                                             <i class="fa fa-edit"></i>
                                         </a>
