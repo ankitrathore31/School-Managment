@@ -1,11 +1,17 @@
-<?php
-session_start();
-// if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] !== 'id') {
-//     header("Location: ../Home/stu-login.php");
-//     exit;
-// }
+<?php session_start();
 
 include("common/header.php");
+
+$student_id = $_SESSION['student_id'] ?? null;
+
+
+// Fetch student info
+$studentQuery = $db->prepare("SELECT * FROM students WHERE student_id = ?");
+$studentQuery->bind_param("s", $student_id);
+$studentQuery->execute();
+$studentResult = $studentQuery->get_result();
+$student = $studentResult->fetch_assoc();
+
 
 ?>
 <style>
@@ -77,32 +83,63 @@ include("common/header.php");
 </style>
 <div class="container mt-4">
     <div class="row mb-2">
-        <div class="col-md-6">
-            <div class="card p-3 shadow-sm">
-                <h5 class="mb-3 text-center"><i class="fas fa-user"></i> Student Information</h5>
+        <div class="col-md-12">
+            <div class="card mb-4 shadow rounded-4">
                 <div class="card-body">
-                    <div class="row mb-3">
-                        <div class="col-6 fw-bold"><i class="fas fa-id-badge"></i> Student ID:</div>
-                        <div class="col-6">#12345</div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-6 fw-bold"><i class="fas fa-user"></i> Name:</div>
-                        <div class="col-6">John Doe</div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-6 fw-bold"><i class="fas fa-graduation-cap"></i> Class:</div>
-                        <div class="col-6">10th Grade</div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-6 fw-bold"><i class="fas fa-list-ol"></i> Roll No:</div>
-                        <div class="col-6">25</div>
+                    <h3 class="card-title mb-4 text-center">
+                        <i class="fas fa-user-graduate me-2 text-primary"></i>
+                        Welcome, <?php echo htmlspecialchars($student['name']); ?>
+                    </h3>
+
+                    <div class="row">
+                        <!-- Personal Info -->
+                        <div class="col-md-6 border-end">
+                            <h5 class="mb-3 text-secondary">
+                                <i class="fas fa-id-card me-2"></i> Personal Information
+                            </h5>
+
+                            <p class="card-text">
+                                <i class="fas fa-id-badge me-2 text-secondary"></i>
+                                <strong>Student ID:</strong> <?php echo htmlspecialchars($student['student_id']); ?>
+                            </p>
+
+                            <p class="card-text">
+                                <i class="fas fa-envelope me-2 text-secondary"></i>
+                                <strong>Email:</strong> <?php echo htmlspecialchars($student['email']); ?>
+                            </p>
+
+                            <p class="card-text">
+                                <i class="fas fa-user-tie me-2 text-secondary"></i>
+                                <strong>Father's Name:</strong> <?php echo htmlspecialchars($student['father']); ?>
+                            </p>
+                        </div>
+
+                        <!-- Academic Info -->
+                        <div class="col-md-6">
+                            <h5 class="mb-3 text-secondary">
+                                <i class="fas fa-book-open me-2"></i> Academic Information
+                            </h5>
+
+                            <p class="card-text">
+                                <i class="fas fa-chalkboard me-2 text-secondary"></i>
+                                <strong>Class:</strong> <?php echo htmlspecialchars($student['class']); ?>
+                            </p>
+
+                            <p class="card-text">
+                                <i class="fas fa-calendar-alt me-2 text-secondary"></i>
+                                <strong>Enrollment Date:</strong> <?php echo date("d M Y", strtotime($student['enrollment_date'])); ?>
+                            </p>
+
+                            <p class="card-text">
+                                <i class="fas fa-book me-2 text-secondary"></i>
+                                <strong>Subjects:</strong> <?php echo htmlspecialchars($student['subject']); ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <div class="row">
         <div class="col-md-6 d-flex">
@@ -120,13 +157,7 @@ include("common/header.php");
     </div>
 
 
-    <div class="row mt-2">
-        <div class="col-md-6">
-            <div class="card p-3 graph-container">
-                <h5>Results</h5>
-                <canvas id="resultChart"></canvas>
-            </div>
-        </div>
+    <div class="row mb-3">
         <div class="col-md-6">
             <div class="card p-3">
                 <h5 class="text-center">School Calendar</h5>
@@ -177,20 +208,6 @@ include("common/header.php");
             datasets: [{
                 data: [75, 25],
                 backgroundColor: ['green', 'red']
-            }]
-        }
-    });
-
-    new Chart(document.getElementById('resultChart'), {
-        type: 'radar',
-        data: {
-            labels: ['Math', 'Science', 'English', 'History', 'Computer'],
-            datasets: [{
-                label: 'Marks (%)',
-                data: [85, 88, 92, 75, 95],
-                backgroundColor: 'rgba(153, 102, 255, 0.5)',
-                borderColor: 'purple',
-                pointBackgroundColor: 'purple'
             }]
         }
     });

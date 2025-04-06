@@ -1,40 +1,36 @@
-<?php
-
-session_start();
+<?php session_start();
 include("common/header.php");
 
 if (isset($_POST['st-login'])) {
-
-
-    // Escape user inputs for security
-    $email = mysqli_real_escape_string($db, $_POST['email']);
+    
+    $student_id = mysqli_real_escape_string($db, $_POST['student_id']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
 
-
-    // Fetch user details
-    $sql = "SELECT * FROM students WHERE email = '$email' AND password = '$password'";
+    
+    $sql = "SELECT * FROM students WHERE student_id = '$student_id' AND password = '$password'";
     $result = mysqli_query($db, $sql);
 
     if ($result) {
         if (mysqli_num_rows($result) == 1) {
-            $user_data = mysqli_fetch_assoc($result); // Fetch user data
+            $user_data = mysqli_fetch_assoc($result);
 
-            // Store user details in session
-            $_SESSION['user_id'] = $user_data['id'];
+            
+            $_SESSION['student_id'] = $user_data['student_id'];
             $_SESSION['user_name'] = $user_data['name'];
 
-            // Redirect to student dashboard
+            
             echo "<script>window.location.href='../Student/dashboard.php';</script>";
             exit;
         } else {
-            echo "<script>alert('Invalid Email or Password');</script>";
+            echo "<script>alert('Invalid Student ID or Password');</script>";
         }
     } else {
-        echo "Error: " . mysqli_error($db); // Debug SQL errors
+        echo "Error: " . mysqli_error($db);
     }
 }
-
 ?>
+
+
 <!-- login section start -->
 <div class="container-fluid justify-content-center d-flex mt-5">
     <div class="row justify-content-center d-flex m-5 rounded">
@@ -47,8 +43,8 @@ if (isset($_POST['st-login'])) {
             <h3><b>Login To <span>Avid Vista School</span></b></h3>
             <form method="post">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" name="email" class="form-control" id="email" required>
+                    <label for="student_id" class="form-label">Student ID:</label>
+                    <input type="text" name="student_id" class="form-control" id="student_id" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password:</label>
@@ -66,7 +62,6 @@ if (isset($_POST['st-login'])) {
         </div>
     </div>
 </div>
-
 
 <?php
 include("common/footer.php");
