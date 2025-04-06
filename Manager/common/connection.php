@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "school";
+$database = "school"; 
 
 $db = new mysqli($servername, $username, $password, $database);
 mysqli_set_charset($db, "utf8");
@@ -14,3 +14,4 @@ if($db->connect_error){
 //     echo "success";
 // }
 ?>
+

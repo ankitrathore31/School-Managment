@@ -1,5 +1,10 @@
 <?php
 include("connection.php");
+
+$query = "SELECT * FROM school LIMIT 1";
+$result = mysqli_query($db, $query);
+
+$school = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +12,8 @@ include("connection.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
-    <title>A V School</title>
+    <link rel="shortcut icon" href="<?= $school['logo'] ?>" type="image/x-icon">
+    <title><?= $school['school_title'] ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -35,7 +40,7 @@ include("connection.php");
         <div class="row align-items-center justify-content-between ">
             <!-- Left Side Text -->
             <div class="col-auto">
-            <h5 class="text-white" style="color: white;">Avid Vista School</h5>
+            <h5 class="text-white" style="color: white;"><?= $school['school_title'] ?></h5>
             </div>
 
             <!-- Right Side Icons -->
@@ -83,7 +88,7 @@ include("connection.php");
                 <ul class="navbar-nav ms-auto">
                     <!-- Dashboard -->
                     <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                        <a class="nav-link active" href="dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
                     </li>
 
                     <!-- Academics Dropdown -->
@@ -119,6 +124,18 @@ include("connection.php");
                             <li><a class="dropdown-item" href="#">Exam Schedule</a></li>
                             <li><a class="dropdown-item" href="#">Results</a></li>
                             <li><a class="dropdown-item" href="#">Online Exams</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Exam Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="examDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-file-pen"></i> Library
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="examDropdown">
+                            <li><a class="dropdown-item" href="search-book.php">Search Book</a></li>
+                            <li><a class="dropdown-item" href="issued_book.php">Issued books</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">Online Exams</a></li> -->
                         </ul>
                     </li>
 

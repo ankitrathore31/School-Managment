@@ -220,8 +220,8 @@ $school = mysqli_fetch_assoc($result);
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="take_stu_attendance.php"><i class="fas fa-user-check me-2"></i> Take Student Attendance</a></li>
                     <li><a class="dropdown-item" href="take_sta_attenadance"><i class="fas fa-user-clock me-2"></i> Take Staff Attendance</a></li>
-                    <li><a class="dropdown-item" href="edit_stu_attendance.php"><i class="fas fa-edit me-2"></i> Edit Student Attendance</a></li>
-                    <li><a class="dropdown-item" href="edit_sta_attendance.php"><i class="fas fa-edit me-2"></i> Edit Staff Attendance</a></li>
+                    <!-- <li><a class="dropdown-item" href="edit_stu_attendance.php"><i class="fas fa-edit me-2"></i> Edit Student Attendance</a></li> -->
+                    <!-- <li><a class="dropdown-item" href="edit_sta_attendance.php"><i class="fas fa-edit me-2"></i> Edit Staff Attendance</a></li> -->
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -231,7 +231,7 @@ $school = mysqli_fetch_assoc($result);
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="#"><i class="fas fa-poll me-2"></i> Result</a></li>
                     <li><a class="dropdown-item" href="#"><i class="fas fa-tasks me-2"></i> Manage Exam</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-ban me-2"></i> No-Dues</a></li>
+                    <!-- <li><a class="dropdown-item" href="#"><i class="fas fa-ban me-2"></i> No-Dues</a></li> -->
                 </ul>
             </li>
             <li class="nav-item dropdown">
